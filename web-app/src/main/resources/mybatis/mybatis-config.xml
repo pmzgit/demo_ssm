@@ -28,10 +28,11 @@
     </settings>
 
     <typeAliases>
-        <typeAlias type="com.pmz.model.auth.User" alias="User"/>
+        <package name="com.pmz.model"/>
+       <!-- <typeAlias type="com.pmz.model.sys.User" alias="User"/>
         <typeAlias type="com.pmz.model.PageData" alias="pd"/>
-        <!-- 分页 -->
-        <typeAlias type="com.pmz.model.Page" alias="Page"/>
+        &lt;!&ndash; 分页 &ndash;&gt;
+        <typeAlias type="com.pmz.model.Page" alias="Page"/>-->
     </typeAliases>
 
 </configuration>

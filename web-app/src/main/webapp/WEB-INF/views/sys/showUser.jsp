@@ -22,7 +22,7 @@ ${user}
 
 <br>
 
-真实姓名：${user.psw}
+密码：${user.psw}
 
 </body>
 </html>

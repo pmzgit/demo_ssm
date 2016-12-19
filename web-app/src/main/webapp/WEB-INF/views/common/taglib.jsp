@@ -11,6 +11,7 @@
 <%--<c:set value="${pageContext.request.contextPath}" var="webRoot" />--%>
 <%
     String webRoot = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
-    request.setAttribute("webRoot",webRoot);
+    request.setAttribute("ctx",webRoot);
 
 %>
+<c:set var="ctxStatic" value="${pageContext.request.contextPath}/static"/>

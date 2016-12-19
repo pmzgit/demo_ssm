@@ -1,4 +1,4 @@
-package com.pmz.dao;
+package com.pmz.dao.base;
 
 public interface DAO {
 	

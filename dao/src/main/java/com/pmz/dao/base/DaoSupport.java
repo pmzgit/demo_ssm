@@ -1,4 +1,4 @@
-package com.pmz.dao;
+package com.pmz.dao.base;
 
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
