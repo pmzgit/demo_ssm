@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
-<%@ include file="/views/common/tagPage.jsp" %>
+<%@ include file="/WEB-INF/views/common/taglib.jsp" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -22,7 +22,7 @@ ${user}
 
 <br>
 
-密码：${user.psw}
+密码：${user.pwd}
 
 </body>
 </html>

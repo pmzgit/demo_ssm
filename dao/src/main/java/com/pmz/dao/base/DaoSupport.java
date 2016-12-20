@@ -23,7 +23,8 @@ public class DaoSupport implements DAO {
 	 * @throws Exception
 	 */
 	public Object save(String str, Object obj) throws Exception {
-		return sqlSessionTemplate.insert(str, obj);
+		sqlSessionTemplate.insert(str, obj);
+		return obj;
 	}
 	
 	/**

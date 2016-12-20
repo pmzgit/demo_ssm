@@ -20,7 +20,7 @@ public class UserService {
     * 保存用户
     */
     @Transactional
-    public void save(User user)throws Exception{
-        dao.save("UserDao.save", user);
+    public User save(User user)throws Exception{
+        return (User) dao.save("UserDao.save", user);
     }
 }

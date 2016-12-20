@@ -71,4 +71,7 @@ public class User {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+    public User() {
+    }
 }

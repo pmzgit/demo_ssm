@@ -5,6 +5,9 @@
 
     <!-- 新增用户 -->
     <insert id="save" parameterType="user" flushCache="false">
+        <selectKey keyProperty="id" order="BEFORE" resultType="string">
+          SELECT UUID()
+        </selectKey>
         insert into user (
         id,
         name,

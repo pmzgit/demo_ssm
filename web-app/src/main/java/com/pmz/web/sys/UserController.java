@@ -28,17 +28,18 @@ public class UserController extends BaseController {
 
     @RequestMapping("/user")
     public String index(){
-        return "sys/editUser.jsp";
+        return "sys/editUser";
     };
 
     /**
      * 保存用户
      */
     @RequestMapping(value="/save",method = RequestMethod.POST)
-    public String save(@RequestBody User user, ModelMap modelMap) throws Exception{
-        userService.save(user);
+    public String save(User user, ModelMap modelMap) throws Exception{
+        User u = userService.save(user);
+        System.out.println("id: "+u.getId());
         modelMap.addAttribute("user",user);
-        return "sys/showUser.jsp";
+        return "sys/showUser";
     }
     /*@RequestMapping("/showUserToJspById/{userId}")
     public String showUser(Model model, @PathVariable("userId") Integer userId){
