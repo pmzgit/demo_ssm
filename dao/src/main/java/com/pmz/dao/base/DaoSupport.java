@@ -1,4 +1,4 @@
-package com.pmz.dao;
+package com.pmz.dao.base;
 
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
@@ -23,7 +23,8 @@ public class DaoSupport implements DAO {
 	 * @throws Exception
 	 */
 	public Object save(String str, Object obj) throws Exception {
-		return sqlSessionTemplate.insert(str, obj);
+		sqlSessionTemplate.insert(str, obj);
+		return obj;
 	}
 	
 	/**

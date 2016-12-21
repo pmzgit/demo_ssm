@@ -1,4 +1,4 @@
-package com.pmz.cms.controller.base;
+package com.pmz.web.base;
 
 
 import com.pmz.model.Page;
