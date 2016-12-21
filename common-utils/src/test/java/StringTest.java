@@ -1,6 +1,8 @@
 import org.junit.Test;
 import sun.misc.BASE64Encoder;
 
+import java.io.File;
+
 /**
  * Created by Administrator on 2016/11/8.
  */
