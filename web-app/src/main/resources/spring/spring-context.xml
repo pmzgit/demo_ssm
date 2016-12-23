@@ -133,9 +133,14 @@
 		<!--最新mybatis的配置文件位置-->
 		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml"></property>
 	</bean>
-
-	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+	<!--这种方式代码简单，但是不易维护-->
+	<!--<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory" />
+	</bean>-->
+	<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+		<property name="basePackage" value="com.pmz.dao"/>
+		<!--<property name="annotationClass" value="com.thinkgem.jeesite.common.persistence.annotation.MyBatisDao"/>-->
 	</bean>
 
 	<!-- mapper 接口所在包名，Spring会自动查找其下的类 -->
