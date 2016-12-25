@@ -1,15 +1,17 @@
 package com.pmz.model.sys;
 
+import com.pmz.model.base.proxy.DataEntity;
 import org.apache.ibatis.type.Alias;
 
 /**
  * Created by XueSong on 2016/10/2.
  */
 @Alias("user")
-public class User {
+public class User extends DataEntity<User>{
 
+    private static final long serialVersionUID = 1L;
     private String id;		//用户id
-    private String userName;	//用户名
+    private String loginName;	//用户名
     private String pwd; 	//密码
     private String name;		//姓名
     private String lastLogin;	//最后登录时间
@@ -24,14 +26,13 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getLoginName() {
+        return loginName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
     }
-
     public String getPwd() {
         return pwd;
     }
