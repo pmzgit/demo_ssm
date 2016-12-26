@@ -1,4 +1,4 @@
-﻿package com.pmz.utils.qrcode;
+package com.pmz.utils.qrcode;
 
 
 
@@ -17,7 +17,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Hashtable;
 import java.util.Random;
-
 import javax.imageio.ImageIO;
 
 import com.google.zxing.BarcodeFormat;
