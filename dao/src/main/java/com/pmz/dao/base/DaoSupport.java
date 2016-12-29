@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import javax.annotation.Resource;
 import java.util.List;
 
-@Repository("daoSupport")
+//@Repository("daoSupport")
 public class DaoSupport implements DAO {
 
 	@Resource(name = "sqlSessionTemplate")

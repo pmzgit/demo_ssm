@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.pmz.web.sys.security;
+package com.pmz.service.sys.security;
 
 import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.servlet.ValidateCodeServlet;
@@ -56,7 +56,10 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) {
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-		
+		String username = token.getUsername();
+		String pwd = new String(token.getPassword());
+
+
 		int activeSessionSize = getSystemService().getSessionDao().getActiveSessions(false).size();
 		if (logger.isDebugEnabled()){
 			logger.debug("login submit, active session size: {}, username: {}", activeSessionSize, token.getUsername());

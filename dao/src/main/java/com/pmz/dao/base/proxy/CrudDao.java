@@ -12,7 +12,7 @@ public interface CrudDao<T> extends BaseDao{
 
     public int insert(T entity);
 
-    public T insertBack(T entity);
+//    public T insertBack(T entity);
 
 
 }

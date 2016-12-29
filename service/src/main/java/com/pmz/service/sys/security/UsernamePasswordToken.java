@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.pmz.web.sys.security;
+package com.pmz.service.sys.security;
 
 /**
  * 用户和密码（包含验证码）令牌类

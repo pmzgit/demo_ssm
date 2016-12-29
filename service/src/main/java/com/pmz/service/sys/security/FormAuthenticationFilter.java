@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.pmz.web.sys.security;
+package com.pmz.service.sys.security;
 
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
