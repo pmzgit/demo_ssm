@@ -16,5 +16,9 @@ public class StringTest {
         System.out.println(encryptStr);
     }
 
-
+    @Test
+    public void testContentEquals(){
+//        System.out.println("wwbced".contentEquals("wwbced"));
+        System.out.println("wwwefghs".contains("wefgh"));
+    }
 }

@@ -19,6 +19,15 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
+    /**
+     * 根据登录名获取用户
+     * @param loginName
+     * @return
+     */
+    public User getUserByLoginName(String loginName){
+        return userDao.getByLoginName(new User(null,loginName));
+    }
+
     /*
     * 保存用户
     */
@@ -27,4 +36,7 @@ public class UserService {
         userDao.insert(user);
         return user;
     }
+
+
+
 }

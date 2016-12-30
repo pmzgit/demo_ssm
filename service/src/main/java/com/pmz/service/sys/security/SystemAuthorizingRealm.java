@@ -3,23 +3,9 @@
  */
 package com.pmz.service.sys.security;
 
-import com.thinkgem.jeesite.common.config.Global;
-import com.thinkgem.jeesite.common.servlet.ValidateCodeServlet;
-import com.thinkgem.jeesite.common.utils.Encodes;
-import com.thinkgem.jeesite.common.utils.SpringContextHolder;
-import com.thinkgem.jeesite.common.web.Servlets;
-import com.thinkgem.jeesite.modules.sys.entity.Menu;
-import com.thinkgem.jeesite.modules.sys.entity.Role;
-import com.thinkgem.jeesite.modules.sys.entity.User;
-import com.thinkgem.jeesite.modules.sys.service.SystemService;
-import com.thinkgem.jeesite.modules.sys.utils.LogUtils;
-import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
-import com.thinkgem.jeesite.modules.sys.web.LoginController;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import com.pmz.model.sys.User;
+import com.pmz.service.sys.UserService;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.Permission;
@@ -33,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
@@ -47,8 +34,8 @@ import java.util.List;
 public class SystemAuthorizingRealm extends AuthorizingRealm {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
-	
-	private SystemService systemService;
+	@Resource(name = "userService")
+	private UserService userService;
 
 	/**
 	 * 认证回调函数, 登录时调用
@@ -59,33 +46,17 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 		String username = token.getUsername();
 		String pwd = new String(token.getPassword());
 
-
-		int activeSessionSize = getSystemService().getSessionDao().getActiveSessions(false).size();
-		if (logger.isDebugEnabled()){
-			logger.debug("login submit, active session size: {}, username: {}", activeSessionSize, token.getUsername());
+		User user = userService.getUserByLoginName(username);
+		if (user == null){
+			throw new UnknownAccountException("该账号不存在");
 		}
-		
-		// 校验登录验证码
-		if (LoginController.isValidateCodeLogin(token.getUsername(), false, false)){
-			Session session = UserUtils.getSession();
-			String code = (String)session.getAttribute(ValidateCodeServlet.VALIDATE_CODE);
-			if (token.getCaptcha() == null || !token.getCaptcha().toUpperCase().equals(code)){
-				throw new AuthenticationException("msg:验证码错误, 请重试.");
-			}
+		if (!pwd.equals(user.getPwd())){
+			throw new IncorrectCredentialsException("账号或密码不正确");
 		}
-		
-		// 校验用户名密码
-		User user = getSystemService().getUserByLoginName(token.getUsername());
-		if (user != null) {
-			if (Global.NO.equals(user.getLoginFlag())){
-				throw new AuthenticationException("msg:该已帐号禁止登录.");
-			}
-			byte[] salt = Encodes.decodeHex(user.getPassword().substring(0,16));
-			return new SimpleAuthenticationInfo(new Principal(user, token.isMobileLogin()),
-					user.getPassword().substring(16), ByteSource.Util.bytes(salt), getName());
-		} else {
-			return null;
+		if (!User.DEL_FLAG_NORMAL.contentEquals(user.getDelFlag())){
+			throw new LockedAccountException("账号异常，请联系管理员");
 		}
+		return new SimpleAuthenticationInfo(user,user.getPwd(),getName());
 	}
 
 	/**
@@ -211,15 +182,7 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 //		}
 	}
 
-	/**
-	 * 获取系统业务对象
-	 */
-	public SystemService getSystemService() {
-		if (systemService == null){
-			systemService = SpringContextHolder.getBean(SystemService.class);
-		}
-		return systemService;
-	}
+
 	
 	/**
 	 * 授权用户信息
@@ -233,7 +196,6 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 		private String name; // 姓名
 		private boolean mobileLogin; // 是否手机登录
 		
-//		private Map<String, Object> cacheMap;
 
 		public Principal(User user, boolean mobileLogin) {
 			this.id = user.getId();
@@ -258,25 +220,7 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 			return mobileLogin;
 		}
 
-//		@JsonIgnore
-//		public Map<String, Object> getCacheMap() {
-//			if (cacheMap==null){
-//				cacheMap = new HashMap<String, Object>();
-//			}
-//			return cacheMap;
-//		}
 
-		/**
-		 * 获取SESSIONID
-		 */
-		public String getSessionid() {
-			try{
-				return (String) UserUtils.getSession().getId();
-			}catch (Exception e) {
-				return "";
-			}
-		}
-		
 		@Override
 		public String toString() {
 			return id;

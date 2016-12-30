@@ -17,6 +17,15 @@ public abstract class DataEntity<T> extends BaseEntity<T>{
     protected User updateDate;
     protected String delFlag;
 
+    public DataEntity(){
+        super();
+        this.delFlag = DEL_FLAG_NORMAL;
+    }
+
+    public DataEntity(String id){
+        super(id);
+    }
+
     public String getRemarks() {
         return remarks;
     }

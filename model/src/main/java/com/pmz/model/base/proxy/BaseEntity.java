@@ -17,8 +17,14 @@ public abstract class BaseEntity<T> implements Serializable{
     public static final String DEL_FLAG_AUDIT = "2";
 
     protected String id;
-
     protected User currentUser;
+    public BaseEntity(){
+
+    }
+
+    public BaseEntity(String id){
+        this.id = id;
+    }
 
     public String getId() {
         return id;

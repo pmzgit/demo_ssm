@@ -14,9 +14,16 @@ public class User extends DataEntity<User>{
     private String loginName;	//用户名
     private String pwd; 	//密码
     private String name;		//姓名
-    private String lastLogin;	//最后登录时间
-    private String ip;			//用户登录ip地址
-    private Integer status;//状态
+    private String loginDate;	//最后登录时间
+    private String loginIp;		//用户登录ip地址
+
+    public User(){
+        super();
+    }
+    public User(String id, String loginName){
+        super(id);
+        this.loginName = loginName;
+    }
 
     public String getId() {
         return id;
@@ -49,30 +56,20 @@ public class User extends DataEntity<User>{
         this.name = name;
     }
 
-    public String getLastLogin() {
-        return lastLogin;
+    public String getLoginDate() {
+        return loginDate;
     }
 
-    public void setLastLogin(String lastLogin) {
-        this.lastLogin = lastLogin;
+    public void setLoginDate(String loginDate) {
+        this.loginDate = loginDate;
     }
 
-    public String getIp() {
-        return ip;
+    public String getLoginIp() {
+        return loginIp;
     }
 
-    public void setIp(String ip) {
-        this.ip = ip;
+    public void setLoginIp(String loginIp) {
+        this.loginIp = loginIp;
     }
 
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public User() {
-    }
 }
