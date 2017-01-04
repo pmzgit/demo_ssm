@@ -1,10 +1,12 @@
 package com.pmz.model.sys;
 
 import com.pmz.model.base.proxy.DataEntity;
+import org.apache.ibatis.type.Alias;
 
 /**
  * Created by Administrator on 2016/12/30.
  */
+@Alias("permission")
 public class Permission extends DataEntity<Permission>{
     private static final long servialVersionUID = 1l;
     public static final Integer MENU = 1;

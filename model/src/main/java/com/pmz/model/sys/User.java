@@ -3,6 +3,9 @@ package com.pmz.model.sys;
 import com.pmz.model.base.proxy.DataEntity;
 import org.apache.ibatis.type.Alias;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by XueSong on 2016/10/2.
  */
@@ -17,6 +20,9 @@ public class User extends DataEntity<User>{
     private String loginDate;	//最后登录时间
     private String loginIp;		//用户登录ip地址
 
+    private List<Identity> identityList = new ArrayList<>();
+
+
     public User(){
         super();
     }
@@ -25,13 +31,6 @@ public class User extends DataEntity<User>{
         this.loginName = loginName;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getLoginName() {
         return loginName;
@@ -71,5 +70,6 @@ public class User extends DataEntity<User>{
     public void setLoginIp(String loginIp) {
         this.loginIp = loginIp;
     }
+
 
 }

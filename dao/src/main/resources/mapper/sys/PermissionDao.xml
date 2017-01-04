@@ -1,0 +1,47 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pmz.dao.sys.PermissionDao">
+    <sql id="IdentityColumns">
+        u.id,
+        u.login_name,
+        u.pwd,
+        u.name,
+        u.email,
+        u.phone1,
+        u.user_type,
+        u.login_ip,
+        u.login_date,
+        u.remarks,
+        u.photo,
+        u.create_by AS "createBy.id",
+        u.create_date,
+        u.update_by AS "updateBy.id",
+        u.update_date,
+        u.del_flag,
+    </sql>
+    <!-- 新增用户 -->
+    <insert id="insert" parameterType="user" flushCache="false">
+        <selectKey keyProperty="id" order="BEFORE" resultType="string">
+            SELECT UUID()
+        </selectKey>
+        insert into user (
+        id,
+        name,
+        pwd
+        ) values (
+        #{id},
+        #{name},
+        #{pwd}
+        )
+    </insert>
+
+    <select id="getByLoginName" resultType="user" parameterType="user">
+        SELECT
+        <include refid="userColumns"/>
+        FROM USER u
+        WHERE u.login_name = #{loginName} AND a.def_flag = #{DEL_FLAG_NORMAL}
+    </select>
+
+
+</mapper>
