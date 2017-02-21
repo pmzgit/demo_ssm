@@ -1,5 +1,7 @@
 package com.pmz.model.sys;
 
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
 import com.pmz.model.base.proxy.DataEntity;
 import org.apache.ibatis.type.Alias;
 
@@ -72,4 +74,31 @@ public class User extends DataEntity<User>{
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return Objects.equal(getLoginName(), user.getLoginName()) &&
+                Objects.equal(getPwd(), user.getPwd()) &&
+                Objects.equal(getName(), user.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getLoginName(), getPwd(), getName());
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("id", id)
+                .add("loginName", loginName)
+                .add("pwd", pwd)
+                .add("name", name)
+                .add("loginDate", loginDate)
+                .add("loginIp", loginIp)
+                .add("identityList", identityList)
+                .toString();
+    }
 }

@@ -56,4 +56,27 @@ public class Identity extends DataEntity<Identity> {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Identity identity = (Identity) o;
+
+        if (!getCode().equals(identity.getCode())) return false;
+        if (getDataScope() != null ? !getDataScope().equals(identity.getDataScope()) : identity.getDataScope() != null)
+            return false;
+        return getStatus().equals(identity.getStatus());
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getCode().hashCode();
+        result = 31 * result + (getDataScope() != null ? getDataScope().hashCode() : 0);
+        result = 31 * result + getStatus().hashCode();
+        return result;
+    }
+
 }

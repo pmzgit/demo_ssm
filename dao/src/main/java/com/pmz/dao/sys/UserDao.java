@@ -8,6 +8,6 @@ import com.pmz.model.sys.User;
  */
 public interface UserDao extends CrudDao<User> {
 
-    public User getByLoginName(User user);
+    User getByLoginName(User user);
 
 }

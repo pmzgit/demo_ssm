@@ -1,6 +1,9 @@
 package com.pmz.model.sys;
 
 import com.pmz.model.base.proxy.DataEntity;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.ibatis.type.Alias;
 
 /**
@@ -102,5 +105,49 @@ public class Permission extends DataEntity<Permission>{
 
     public void setSort(Integer sort) {
         this.sort = sort;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (!(o instanceof Permission)) return false;
+
+        Permission that = (Permission) o;
+
+        return new EqualsBuilder()
+                .append(getParent(), that.getParent())
+                .append(getPermission(), that.getPermission())
+                .append(getHref(), that.getHref())
+                .append(getPermissionType(), that.getPermissionType())
+                .append(getMenuType(), that.getMenuType())
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(getParent())
+                .append(getPermission())
+                .append(getHref())
+                .append(getPermissionType())
+                .append(getMenuType())
+                .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("parent", parent)
+                .append("name", name)
+                .append("permission", permission)
+                .append("href", href)
+                .append("no", no)
+                .append("route", route)
+                .append("permissionType", permissionType)
+                .append("menuType", menuType)
+                .append("icon", icon)
+                .append("sort", sort)
+                .toString();
     }
 }

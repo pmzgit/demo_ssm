@@ -1,7 +1,7 @@
 package com.pmz.model;
 
-import com.pmz.utils.common.Const;
-import com.pmz.utils.common.Tools;
+import com.pmz.util.common.ProjectConsts;
+import com.pmz.util.common.Tools;
 
 public class Page {
 	
@@ -18,7 +18,7 @@ public class Page {
 	
 	public Page(){
 		try {
-			this.showCount = Integer.parseInt(Tools.readTxtFile(Const.PAGE));
+			this.showCount = Integer.parseInt(Tools.readTxtFile(ProjectConsts.PAGE));
 		} catch (Exception e) {
 			this.showCount = 15;
 		}
