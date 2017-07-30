@@ -2,6 +2,7 @@ package io;
 
 import org.junit.Test;
 
+import javax.sound.midi.Soundbank;
 import java.io.*;
 import java.nio.charset.Charset;
 
@@ -9,11 +10,46 @@ import java.nio.charset.Charset;
  * Created by pmz on 2017/2/21 15:20.
  */
 public class IOTest {
+
+    @Test
+    public void testFile(){
+        File file = new File("D:\\project\\note");
+        /*try {
+            file.createNewFile();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(File.separator);
+        System.out.println(File.separatorChar);
+        System.out.println(File.pathSeparator);
+        file.list();
+        file.listFiles();*/
+        print(file);
+    }
+
+    public static void print(File f){
+        if (f!=null){
+            if (f.isDirectory()){
+                File[] files = f.listFiles();
+                if (files != null){
+                    for (int i=0; i<files.length; i++){
+                        print(files[i]);
+                    }
+                }
+            }else {
+                System.out.println(f.getName());
+                System.out.println(f.getPath());
+                System.out.println(f.getAbsolutePath());
+            }
+        }
+    }
+
     public static String read(String filename) throws Exception {
         StringBuilder sb = new StringBuilder();
         try {
-            BufferedReader in = new BufferedReader(new FileReader(new File(
-                    filename).getAbsoluteFile()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(new  File(
+                    filename).getAbsoluteFile()),Charset.forName("gbk")));
             String s;
             try {
                 while ((s = in.readLine()) != null) {
@@ -32,11 +68,11 @@ public class IOTest {
 
     @Test
     public void testBufferedReader() throws Exception {
-        System.out.println(read("d:/git/note/java.md"));
+        System.out.println(read("d:/hello.txt"));
     }
     @Test
     public void testMemoryInput() throws Exception{
-        StringReader sr = new StringReader(read("d:/git/note/java.md"));
+        StringReader sr = new StringReader(read("d:/hello.txt"));
         int c;
         while ((c = sr.read()) != -1){
             System.out.println(c);
