@@ -1,3 +1,4 @@
+import org.junit.Ignore;
 import org.junit.Test;
 import com.google.zxing.*;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
@@ -13,7 +14,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
-
+@Ignore
 public class QRCodeTest {
     /**
      * 生成图像

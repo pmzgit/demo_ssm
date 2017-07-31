@@ -33,7 +33,7 @@ public class StringTest {
 
 //        GenerateImage(GetImageStr("C:\\Users\\Administrator\\Desktop\\pmz\\ocr\\sfz (2).jpg"), "D:\\aliyun-menu2.png");
         // 测试从图片文件转换为Base64编码
-      System.out.println(GetImageStr("d:\\aliyun-menu2.png"));
+//      System.out.println(GetImageStr("d:\\aliyun-menu2.png"));
     }
 
 
@@ -116,4 +116,6 @@ public class StringTest {
     public void testEquals(){
         System.out.println(Objects.equals("1","2"));
     }
+
+
 }

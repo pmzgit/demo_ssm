@@ -1,5 +1,6 @@
 package io;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.*;
@@ -8,6 +9,7 @@ import java.nio.charset.Charset;
 /**
  * Created by pmz on 2017/2/21 15:20.
  */
+@Ignore
 public class IOTest {
     public static String read(String filename) throws Exception {
         StringBuilder sb = new StringBuilder();

@@ -17,11 +17,11 @@
     <bytecodeTargetLevel>
       <module name="common-util" target="1.7" />
       <module name="common-utils" target="1.7" />
-      <module name="dao" target="1.7" />
-      <module name="model" target="1.7" />
+      <module name="dao" target="1.5" />
+      <module name="model" target="1.5" />
       <module name="parent" target="1.7" />
       <module name="service" target="1.7" />
-      <module name="web-app" target="1.7" />
+      <module name="web-app" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

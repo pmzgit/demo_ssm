@@ -19,7 +19,7 @@
         </dependency>
         <dependency>
             <groupId>com.pmz</groupId>
-            <artifactId>common-utils</artifactId>
+            <artifactId>common-util</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
