@@ -15,7 +15,7 @@ public class ArrayTest {
 
         // toString用法
         System.out.println("Arrays.toString用法：" + Arrays.toString(array1));
-
+        System.out.println(Arrays.toString(new char[]{'a','b'}));
         final int DEEP_ARRAY_SIZE = 3;
         int[][] array2 = new int[DEEP_ARRAY_SIZE][DEEP_ARRAY_SIZE];
         for (int i = 0; i < DEEP_ARRAY_SIZE; i++)
@@ -40,13 +40,23 @@ public class ArrayTest {
         for (int i = 0; i < ARRAY_SIZE; i++)
             array[i] = random.nextInt(ARRAY_SIZE * 10);
         System.out.println("原始顺序：" + Arrays.toString(array));
-        Arrays.sort(array);
+        Arrays.sort(array,0,3);
         System.out.println("sort后顺序：" + Arrays.toString(array));
 
+        String[] strarr = {"hello","world","Break","abc"};
+        Arrays.sort(strarr,String.CASE_INSENSITIVE_ORDER);
+        System.out.println(Arrays.toString(strarr));
+        Arrays.sort(strarr,Collections.<String>reverseOrder(String.CASE_INSENSITIVE_ORDER));
         // binarySearch搜索，先设置一个值，然后找
         array[3] = 37;
         int pos = Arrays.binarySearch(array, 37);
         System.out.println("查找到的位置：" + pos);
+
+        int[] intarr = {0,3,2,8,9,4,2};
+        int[] subintarr = Arrays.copyOfRange(intarr,2,5);
+        int[] subintarr1 = Arrays.copyOfRange(intarr,2,10);
+        System.out.println(Arrays.toString(subintarr));
+        System.out.println(Arrays.toString(subintarr1));
 
         // Arrays.asList方法调用
         String[] strarray = new String[ARRAY_SIZE];
