@@ -6,6 +6,7 @@ import org.junit.Test;
 import javax.sound.midi.Soundbank;
 import java.io.*;
 import java.nio.charset.Charset;
+import java.util.Arrays;
 
 /**
  * Created by pmz on 2017/2/21 15:20.
@@ -15,18 +16,27 @@ public class IOTest {
 
     @Test
     public void testFile(){
-        File file = new File("D:\\project\\note");
+        File file = new File("./");
         /*try {
             file.createNewFile();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
         System.out.println(File.separator);
         System.out.println(File.separatorChar);
         System.out.println(File.pathSeparator);
         file.list();
-        file.listFiles();*/
+        file.listFiles();
+        print(file);
+    }
+
+    @Test
+    public void create(){
+        File file = new File("d:/tmp/aa.exe");
+        //            file.createNewFile();
+        file.delete();
         print(file);
     }
 
@@ -43,10 +53,37 @@ public class IOTest {
                 System.out.println(f.getName());
                 System.out.println(f.getPath());
                 System.out.println(f.getAbsolutePath());
+                try {
+                    System.out.println(f.getCanonicalPath());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
-
+    @Test
+    public void ws(){
+        String fileName="D:"+File.separator+"hello.txt";
+        File f=new File(fileName);
+        OutputStream out = null;
+        try {
+            out = new FileOutputStream(f,true);
+            String str="你好2a";
+            byte[] b=str.getBytes();
+            System.out.println(Arrays.toString(b));
+            int a = b[2];
+            System.out.println(a);
+//            out.write(b);
+            for (int i = 0 ; i<b.length; i++){
+                out.write(b[i]);
+            }
+            out.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public static String read(String filename) throws Exception {
         StringBuilder sb = new StringBuilder();
         try {
@@ -84,6 +121,7 @@ public class IOTest {
     }
 
     public static void copyByte(File sourceFile, File targetFile){
+//        https://blog.csdn.net/fireofjava/article/details/7220754
         try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(sourceFile));
              BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(targetFile));) {
 //            byte[] buffer = new byte[bis.available()];

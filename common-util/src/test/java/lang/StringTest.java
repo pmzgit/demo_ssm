@@ -152,5 +152,11 @@ public class StringTest {
         // 设计到正则表达式 加 \ 那就 需要两步， \\ 代表一个转义字符  \\ 代表一个反斜杠
         String[] c = "aaa\\bbb\\ccc".split("\\\\");
         System.out.println(Arrays.toString(c));
+
+        //
+        String str = "a,b,c,,";
+        String[] ary = str.split(",");
+        // 预期大于 3，结果是 3
+        System.out.println(ary.length);
     }
 }

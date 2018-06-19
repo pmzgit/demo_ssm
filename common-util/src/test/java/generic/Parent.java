@@ -29,7 +29,7 @@ public class Parent<T> {
         return t;
     }
     /** 
-     * 不能在泛型类的静态域中使用泛型类型
+     * 不能在泛型类的静态域中使用泛型类型,但是泛型方法，可以
      * @author pmz 
      * @date 2017/5/18 
      *

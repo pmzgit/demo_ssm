@@ -13,7 +13,7 @@ public class BaseTest {
     @Test
     public void init() {
         Class<Parent> parentClass = Parent.class;
-        Parent parent = null;
+        Parent<String> parent = null;
         try {
             parent = parentClass.newInstance();
         } catch (InstantiationException | IllegalAccessException e) {
@@ -36,14 +36,14 @@ public class BaseTest {
         try {
             Field name = parentClass.getDeclaredField("name");
             name.setAccessible(true);
-            name.set(parent,22);
+            name.set(parent,"22");
             System.out.println(parent.getName());
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
 
         try {
-            Method setName = parentClass.getMethod("setName",String.class);
+            Method setName = parentClass.getMethod("setName",Object.class);
             setName.invoke(parent,"aa");
             parent.getName();
         } catch (Exception e) {
@@ -58,6 +58,12 @@ public class BaseTest {
         Array.set(array,1,"b");
         System.out.println(Array.get(array,1));
     }
+    /**
+     * 反射与泛型
+     * @author pmz
+     * @date 2018/2/5
+     *
+     */
     @Test
     public void genericFlection(){
         Class<Student> studentClass = Student.class;

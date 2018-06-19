@@ -35,4 +35,5 @@ public class LangTest {
         byte c = (byte) (a + b);
         System.out.println(c);
     }
+
 }

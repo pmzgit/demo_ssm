@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.Random;
 
 /**
  * Created by Administrator on 2017/2/8.
@@ -24,6 +25,7 @@ public class MathTest {
      * DecimalFormat 类主要靠 # 和 0 两种占位符号来指定数字长度。0 表示如果位数不足则以 0 填充，# 表示只要有可能就把数字拉上这个位置
      * @author pmz
      * @date 2017/2/9
+     * 字符串格式化请参考 https://www.cnblogs.com/fsjohnhuang/p/4094777.html
      */
     @Test
     public void testFormat(){
@@ -94,5 +96,18 @@ public class MathTest {
         System.out.println(new BigDecimal("2.63"));
         System.out.println(new BigDecimal(2.4).setScale(0, RoundingMode.HALF_UP).intValue());
 
+    }
+    @Test
+    public void numberClassEqual(){
+        System.out.println(0.0f == -0.0f);
+        System.out.println(Float.valueOf(0.0f).equals(Float.valueOf(-0.0f)));
+    }
+
+    @Test
+    public void random(){
+        Random random = new Random();
+        System.out.println(random.nextInt(1));;
+        System.out.println(random.nextLong());
+        System.out.println(Math.random());
     }
 }

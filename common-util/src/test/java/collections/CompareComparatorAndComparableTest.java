@@ -94,11 +94,26 @@ public class CompareComparatorAndComparableTest{
 
         /**
          * 比较两个Person是否相等：若它们的name和age都相等，则认为它们相等
+         * 重写equlas(), hashCode()
+         * 在有些场景下 equals 和 compareTo 结果要保持一致，这时候不重写 equals，使用 Object.equals 方法得到的结果会有问题，比如说 HashMap.put() 方法，会先调用 key 的 equals 方法进行比较，然后才调用 compareTo。
+
+         后面重写 compareTo 时，要判断某个相同时对比下一个属性，把所有属性都比较一次。
          */
-        boolean equals(Person person) {
-            if (this.age == person.age && this.name == person.name)
-                return true;
-            return false;
+
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Person person = (Person) o;
+            return age == person.age &&
+                    Objects.equals(name, person.name);
+        }
+
+        @Override
+        public int hashCode() {
+
+            return Objects.hash(age, name);
         }
 
         /**

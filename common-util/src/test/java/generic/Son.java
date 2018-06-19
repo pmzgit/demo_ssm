@@ -9,11 +9,11 @@ public class Son extends Parent<String>{
     }
 
     public static void main(String[] args) {
-        /*Son son = new Son();
+        Son son = new Son();
         son.setName("aaa");
 //        son.setName(new Object());
         Parent parent = son;
-        parent.setName(new Object());//will show runtime exception： ClassCastException*/
+        parent.setName(new Object());//will show runtime exception： ClassCastException
 
         /*Son son = new Son();
         System.out.println(son.init(String.class));*/

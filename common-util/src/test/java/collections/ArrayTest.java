@@ -58,20 +58,8 @@ public class ArrayTest {
         System.out.println(Arrays.toString(subintarr));
         System.out.println(Arrays.toString(subintarr1));
 
-        // Arrays.asList方法调用
-        String[] strarray = new String[ARRAY_SIZE];
-        for (int i = 0; i < ARRAY_SIZE; i++)
-            strarray[i] = "str" + i;
-        System.out.println("Arrays.asList将Array转换为List后，对List遍历：");
-        List<String> list = Arrays.asList(strarray);
-        for (String str : list)
-            System.out.println(str);
 
-        // List接口的toArray方法调用
-        System.out.println("List接口的toArray方法将List转换为Array后，对Array遍历：");
-        String[] secondStrArray = (String[]) list.toArray();
-        for (int i = 0; i < secondStrArray.length; i++)
-            System.out.println(secondStrArray[i]);
+
     }
 
     @Test
@@ -117,4 +105,53 @@ public class ArrayTest {
         System.out.println(a.length);
     }
 
+    @Test
+    public void subList(){
+//        http://cmsblogs.com/?p=1239
+//        http://cmsblogs.com/?p=1220
+        List<Object> lists = new ArrayList<Object>();
+
+        lists.add("1");
+        lists.add("2");
+        lists.add("3");
+        lists.add("4");
+
+        List<Object> tempList = lists.subList(2, lists.size());
+
+        tempList.add("6");
+        System.out.println(tempList.get(1));
+        System.out.println(tempList); // 1
+
+        System.out.println(lists); // 2
+        System.out.println(lists.equals(tempList));
+    }
+    @Test
+    public void toArray(){
+        List<String> list = new ArrayList<String>(2);
+        list.add("guan");
+        list.add("bao");
+        String[] array = new String[list.size()];
+//        array = list.toArray(array);
+        list.toArray(array);
+        System.out.println(Arrays.toString(array));
+    }
+
+    @Test
+    public void asList(){
+        int ARRAY_SIZE = 5;
+        // Arrays.asList方法调用
+        String[] strarray = new String[ARRAY_SIZE];
+        for (int i = 0; i < ARRAY_SIZE; i++)
+            strarray[i] = "str" + i;
+        System.out.println("Arrays.asList将Array转换为List后，对List遍历：");
+        List<String> list = Arrays.asList(strarray);
+        for (String str : list)
+            System.out.println(str);
+        strarray[0] = "aa";
+        System.out.println(list.toString());
+        list.set(2, "bb");
+
+        System.out.println(list.toString());
+        System.out.println(Arrays.toString(strarray));
+    }
 }

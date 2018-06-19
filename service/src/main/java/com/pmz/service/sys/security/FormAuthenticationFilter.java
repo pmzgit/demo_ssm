@@ -3,7 +3,6 @@
  */
 package com.pmz.service.sys.security;
 
-import com.thinkgem.jeesite.common.utils.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.IncorrectCredentialsException;

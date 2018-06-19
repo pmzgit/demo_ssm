@@ -65,6 +65,7 @@ public class FinalTest {
     * 当final用来定义一个方法时,表示这个方法不可以被子类重写，但是它这不影响它被子类继承。
     * 由于final类不允许被继承，编译器在处理时把它的所有方法都当作final的，因此final类比普通类拥有更高的效率。
     * final的类的所有方法都不能被重写，但这并不表示final的类的属性（变量）值也是不可改变的，要想做到final类的属性值不可改变，必须给它增加final修饰，请看下面的例子：
+    * 静态方法无法用final修饰
     * */
     String generalField = "some str";
     @Test

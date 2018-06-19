@@ -60,7 +60,8 @@ class Godown {
         curnum += neednum;
         System.out.println("已经生产了" + neednum + "个产品，现仓储量为" + curnum);
         //唤醒在此对象监视器上等待的所有线程
-        notifyAll();
+//        notifyAll();
+        notify();
     }
 
     /**
@@ -81,7 +82,8 @@ class Godown {
         curnum -= neednum;
         System.out.println("已经消费了" + neednum + "个产品，现仓储量为" + curnum);
         //唤醒在此对象监视器上等待的所有线程
-        notifyAll();
+//        notifyAll();
+        notify();
     }
 }
 
